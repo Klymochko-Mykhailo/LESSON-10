@@ -30,23 +30,3 @@ for elem in response_parse:
 
 
 
-# Завдання 3
-
-import requests
-
-response = requests.get("http://books.toscrape.com/")
-text = response.text
-
-titles = []
-prices = []
-
-for elem in text.split('title="'):
-    if '"' in elem:
-        titles.append(elem.split('"')[0])
-
-for elem in text.split('£'):
-    if elem[:1].isdigit():
-        prices.append("£" + elem[:5])
-
-for i in range(len(prices)):
-    print(f"Книга: {titles[i]} | Ціна: {prices[i]}")
